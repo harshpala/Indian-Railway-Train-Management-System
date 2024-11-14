@@ -8,8 +8,9 @@ private:
     std::string lineID; // Line identifier
 
 public:
-    Line(const std::string& id); // Constructor
-    std::string getID() const;   // Get line ID
+    Line();                             // Default constructor
+    Line(const std::string& id);        // Constructor with ID parameter
+    std::string getID() const;          // Get line ID
 };
 
 #endif

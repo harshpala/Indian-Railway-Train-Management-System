@@ -2,26 +2,28 @@
 #define STATION_H
 
 #include <string>
-#include <vector>
 #include "Platform.h"
 #include "Line.h"
 
-// Template class for Station to allow flexible ID types (string or integer)
+// Maximum number of lines per station
+const int MAX_LINES = 10;
+
 template <typename T>
 class Station {
 private:
-    T stationID;                      // Station ID can be string or integer
-    std::vector<Line> lines;          // Lines associated with the station
-    Platform platform;                // Platform associated with this station
+    T stationID;                          // Station ID can be string or integer
+    Line lines[MAX_LINES];                // Fixed-size array of lines
+    int lineCount;                        // Track the number of lines added
+    Platform platform;                    // Single platform associated with this station
 
 public:
-    Station(T id);                    // Constructor with ID parameter
-    void addLine(const Line& line);   // Method to add a line to the station
-    T getID() const;                  // Method to get the station ID
-    Platform& getPlatform();          // Access platform for train timing validation
+    Station(T id);                        // Constructor with ID parameter
+    void addLine(const Line& line);       // Method to add a line to the station
+    T getID() const;                      // Method to get the station ID
+    Platform& getPlatform();              // Access platform for train timing validation
+    std::string getLineID(int index) const; // Method to get a line ID by index
 };
 
-// Include the implementation file
-#include "Station.cpp"
+#include "Station.cpp" // Include the implementation file
 
 #endif
