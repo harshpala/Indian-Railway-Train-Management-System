@@ -18,7 +18,10 @@ public:
     Station(T id);                    // Constructor with ID parameter
     void addLine(const Line& line);   // Method to add a line to the station
     T getID() const;                  // Method to get the station ID
+    Platform& getPlatform();          // Access platform for train timing validation
 };
 
-#include "Station.cpp" // Template implementations must be included here
+// Include the implementation file
+#include "Station.cpp"
+
 #endif
