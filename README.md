@@ -112,5 +112,32 @@ Main Menu:
 4. Exit
 Enter your choice: 4
 Exiting program. Goodbye!
+```
+## **Test User Program**
+
+- Run the `test_program.exe` by executing:
+   ```bash
+   ./test_program.exe
+
+- **Output**
+
+```bash
+  === Railway Library Test Program ===
+Testing valid data...
+Adding Station STN001...
+Station STN001 added successfully.
+Adding 2 lines to Station STN001...
+Line L1 added to Station STN001.
+Line L2 added to Station STN001.
+Adding trains to Line L1...
+Train time validated.
+Train at 10:30 AM added.
+terminate called after throwing an instance of 'std::invalid_argument'
+  what():  Train timing violates constraints. Conflict with existing train at 10:30 AM (Through)
+```
 
 
+## **Notes** ##
+- `Input Validation`: All user inputs are validated to ensure that the station ID, line ID, train time, and train type follow the correct format. If an invalid input is entered (e.g., entering letters instead of numbers or incorrect time format), the program will prompt the user to re-enter the correct value.
+
+- `Memory Management`: The program dynamically allocates memory for stations and lines, which is properly cleaned up before the program exits.
