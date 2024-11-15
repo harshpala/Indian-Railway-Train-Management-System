@@ -1,37 +1,45 @@
 #include "Station.h"
-#include <stdexcept>
+#include <iostream>
 
-// Constructor initializes the station ID and sets lineCount to 0
 template <typename T>
-Station<T>::Station(T id) : stationID(id), lineCount(0) {}
+Station<T>::Station(T id) : stationID(id), lineCount(0), platform(new Platform("DefaultPlatform")) {}
 
-// Method to add a line to the station
 template <typename T>
-void Station<T>::addLine(const Line& line) {
-    if (lineCount < MAX_LINES) {
-        lines[lineCount++] = line;
-    } else {
-        throw std::overflow_error("Maximum number of lines reached for this station.");
+Station<T>::~Station() {
+    delete platform;
+    for (int i = 0; i < lineCount; ++i) {
+        delete lines[i];
     }
 }
 
-// Method to get the station ID
+template <typename T>
+void Station<T>::addLine(Line* line) {
+    if (lineCount < 10) {
+        lines[lineCount++] = line;
+    } else {
+        std::cout << "Cannot add more lines. Maximum limit reached.\n";
+    }
+}
+
 template <typename T>
 T Station<T>::getID() const {
     return stationID;
 }
 
-// Access the single platform for train timing validation
 template <typename T>
-Platform& Station<T>::getPlatform() {
+Platform* Station<T>::getPlatform() const {
     return platform;
 }
 
-// Method to get a line ID by index
 template <typename T>
-std::string Station<T>::getLineID(int index) const {
-    if (index < 0 || index >= lineCount) {
-        throw std::out_of_range("Invalid line index");
+Line* Station<T>::findLine(const std::string& lineID) const {
+    for (int i = 0; i < lineCount; ++i) {
+        if (lines[i]->getID() == lineID) {
+            return lines[i];
+        }
     }
-    return lines[index].getID();
+    return nullptr;  // Return nullptr if the line is not found
 }
+
+// Explicit instantiation for std::string
+template class Station<std::string>;
