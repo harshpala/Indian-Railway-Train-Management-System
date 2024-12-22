@@ -1,4 +1,4 @@
-#include "Line.h"
+#include "../include/Line.h"
 
 Line::Line(const std::string& id) : lineID(id), platformCount(0) {}
 
