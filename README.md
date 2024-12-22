@@ -31,7 +31,7 @@ This will compile the source files and link them into the executable main_shared
 
 3. **Running the program**: After successful compilation, you can run the program by executing:
    ```bash
-   ./main_shared.exe
+   ./build/main_shared.exe
 
 ### **Makefile Overview**
 - Makefile provided in the project handles the compilation and linking process. It defines the build commands for shared libraries (`librailway.so`), static libraries (`librailway.a`), and the final executable (`main_shared.exe`).
@@ -117,7 +117,7 @@ Exiting program. Goodbye!
 
 - Run the `test_program.exe` by executing:
    ```bash
-   ./test_program.exe
+   ./build/test_program.exe
 
 - **Output**
 
